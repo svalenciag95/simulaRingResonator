@@ -41,7 +41,7 @@ transmitance1 = A1(:, 2);
 % wavelength5 = A5(:, 1);
 % transmitance5 = A5(:, 2);
 
-% Convertir los valores de longitud de onda a nanómetros
+% Convertir los valores de longitud de onda a nan�metros
 wavelength1 = wavelength1 * 1000;
 % wavelength2 = wavelength2 * 1000;
 % wavelength3 = wavelength3 * 1000;
@@ -60,39 +60,36 @@ transmitance = [transmitance1];
 % Graficar los datos juntos
 plot(wavelength, transmitance, 'LineWidth', 1.5)
 
-% Etiquetas y título del gráfico
+% Etiquetas y t�tulo del gr�fico
 xlabel('Longitud de onda [nm]')
 ylabel('Transmitancia')
-title('Gráfico de datos anillo microresonador de 100 [um]')
+title('Gr�fico de datos anillo microresonador de 100 [um]')
 
 
 %% obtener las longitudes de onda/frecuencias minimas de cada pico
 
-% Encontrar los mínimos (picos)
+% Encontrar los m�nimos (picos)
 [peaks, peakIndices] = findpeaks(-transmitance);
 
-% Filtrar los mínimos por debajo de 0.5 en transmitancia
+% Filtrar los m�nimos por debajo de 0.5 en transmitancia
 filteredPeakIndices = peakIndices(transmitance(peakIndices) < 0.93);
 filteredPeaks = peaks(transmitance(peakIndices) < 0.93);
 
-% Almacenar los valores de longitud de onda y transmitancia correspondientes a los mínimos filtrados
+% Almacenar los valores de longitud de onda y transmitancia correspondientes a los m�nimos filtrados
 minWavelengths = wavelength(filteredPeakIndices);
 minTransmitance = transmitance(filteredPeakIndices);
 
-% minWavelengths(62) = []; % Eliminar la posición por índice
-% minTransmitance(62) = []; % Eliminar la posición por índice
-
-% Mostrar los valores de los mínimos filtrados
-disp('Valores de los mínimos filtrados:')
+% Mostrar los valores de los m�nimos filtrados
+disp('Valores de los m�nimos filtrados:')
 disp([minWavelengths, minTransmitance])
 
 % Graficar los datos de las frecuencias minimas vs la transmitacia
 figure(2)
 plot(minWavelengths, minTransmitance, "o")
-% Etiquetas y título del gráfico
+% Etiquetas y t�tulo del gr�fico
 xlabel('Longitud de onda [nm]')
 ylabel('Transmitancia')
-title('Gráfico de datos anillo microresonador de 100 [um]')
+title('Gr�fico de datos anillo microresonador de 100 [um]')
 
 %% convertir longitudes de onda minimas encontradas a frecuencias
 
@@ -102,10 +99,10 @@ frecuencias_GHz_2 = flipud(frecuencias_GHz); %invertir el vector para despues ma
 % Graficar los datos de las frecuencias minimas 
 figure(3)
 plot(frecuencias_GHz,minTransmitance, "*")
-% Etiquetas y título del gráfico
+% Etiquetas y t�tulo del gr�fico
 xlabel('Frencuencia [GHz]')
 ylabel('Transmitancia')
-title('Gráfico de datos anillo microresonador de 100 [um]')
+title('Gr�fico de datos anillo microresonador de 100 [um]')
 
 % Mostrar los valores de las frecuencias en gigahertz ajustadas
 disp('Valores de las frecuencias en gigahertz:')
@@ -135,7 +132,7 @@ end
 
 
 
-%% Ajuste de la curva cuadrática
+%% Ajuste de la curva cuadr�tica
 coeficientes = polyfit(u, D3, 2);
 curva_cuadratica = polyval(coeficientes, u);
 
@@ -143,8 +140,8 @@ curva_cuadratica = polyval(coeficientes, u);
 figure(5); clf; 
 hold on
 plot(u, D3,'o')
-% Curva cuadrática ajustada
-plot(u, curva_cuadratica, 'r-', 'DisplayName', 'Curva cuadrática ajustada');
+% Curva cuadr�tica ajustada
+plot(u, curva_cuadratica, 'r-', 'DisplayName', 'Curva cuadr�tica ajustada');
 xlabel('Numero de modo (\mu)')
 ylabel('(\omega_{\mu} - \omega_{0} - D1\mu)/2\pi (GHz)')
 title('Curva de dispersion anillo microresonador de 100 [um]')
